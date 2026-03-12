@@ -50,10 +50,12 @@ def predict(
     target_encoder_path: Path | str = DEFAULT_TARGET_ENCODER,
 ) -> pd.DataFrame:
     # Step 1: Preprocess raw input
+    
+
     df = clean_and_merge(input_df)
     df = drop_duplicates(df)
     df = remove_outliers(df)
-
+    
     # Step 2: Feature engineering
     if "date" in df.columns:
         df = add_date_features(df)
@@ -70,7 +72,7 @@ def predict(
         target_encoder = load(target_encoder_path)
         # TargetEncoder transforms 'city_full' to itself (by column name), so we rename the output
         encoded_df = target_encoder.transform(df[["city_full"]])
-        df["city_full_encoded"] = encoded_df["city_full"]
+        df["city_encoded"] = encoded_df["city_full"]
         df = df.drop(columns=["city_full"], errors="ignore")
 
     # Drop leakage columns
