@@ -52,3 +52,14 @@ Thumbs.db
 *.pid
 *.tar
 *.lock.json
+
+# Trained models & encoders (S3'ten çekilir, git'te tutulmaz)
+models/
+*.pkl
+
+# Generated outputs
+predictions.csv
+
+# Temp / scratch scripts
+check_nans.py
+mod_nb.py
